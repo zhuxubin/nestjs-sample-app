@@ -1,4 +1,4 @@
-import { ExecutionContext, Injectable } from '@nestjs/common';
+import { ExecutionContext, Injectable, UnauthorizedException } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { AuthGuard } from '@nestjs/passport';
 import { isNil } from 'lodash';
@@ -33,7 +33,7 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
 
         // 从请求头中获取token，如果请求头不含有authorization字段则认证失败
         const requestToken = ExtractJwt.fromAuthHeaderAsBearerToken()(request);
-        if (isNil(requestToken)) return false;
+        if (isNil(requestToken)) throw new UnauthorizedException('没有授权登录');
 
         return (await super.canActivate(context)) as boolean;
     }

@@ -27,32 +27,32 @@ export class MemoController {
     constructor(protected readonly memoService: MemoService) {}
 
     @Get()
-    @ApiOperation({ summary: '查找记录' })
-    findAll(@ReqUser() user: ClassToPlain<UserEntity>, @Query() data: ListMemoDto) {
-        return this.memoService.findAll(user.id, data);
+    @ApiOperation({ summary: '记录列表' })
+    list(@ReqUser() user: ClassToPlain<UserEntity>, @Query() data: ListMemoDto) {
+        return this.memoService.list(user.id, data);
     }
 
     @Post()
     @ApiOperation({ summary: '新增记录' })
     create(@ReqUser() user: ClassToPlain<UserEntity>, @Body() data: MemoDto) {
-        return this.memoService.addMemo(user.id, data);
+        return this.memoService.create(user.id, data);
     }
 
     @Patch()
     @ApiOperation({ summary: '修改记录' })
     update(@Body() data: UpdateMemoDto) {
-        return this.memoService.updateMemo(data);
+        return this.memoService.update(data);
     }
 
     @Get(':id')
     @ApiOperation({ summary: '获取记录' })
-    findOne(@Param('id', new ParseUUIDPipe()) id: string) {
-        return this.memoService.findOne(id);
+    detail(@Param('id', new ParseUUIDPipe()) id: string) {
+        return this.memoService.detail(id);
     }
 
     @Delete(':id')
     @ApiOperation({ summary: '删除记录' })
-    remove(@Param('id', new ParseUUIDPipe()) id: string) {
-        return this.memoService.delMemo(id);
+    delete(@Param('id', new ParseUUIDPipe()) id: string) {
+        return this.memoService.delete(id);
     }
 }

@@ -2,11 +2,11 @@ import { Repository } from 'typeorm';
 
 import { CustomRepository } from '@/core/decorators';
 
-import { MemoEntity } from '../entities';
+import { JourneyEntity } from '../entities';
 
-@CustomRepository(MemoEntity)
-export class MemoRepository extends Repository<MemoEntity> {
-    private tableName = 'memo'; // 表名
+@CustomRepository(JourneyEntity)
+export class JourneyRepository extends Repository<JourneyEntity> {
+    private tableName = 'journey'; // 表名
 
     buildBaseQuery() {
         return this.createQueryBuilder(this.tableName).orderBy(
