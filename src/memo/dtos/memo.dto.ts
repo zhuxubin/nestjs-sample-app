@@ -28,5 +28,5 @@ export class UpdateMemoDto {
     id!: string;
 
     @IsOptional({ always: true })
-    status!: boolean;
+    completed!: boolean;
 }

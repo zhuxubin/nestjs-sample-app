@@ -31,7 +31,7 @@ export class MemoEntity extends BaseEntity {
 
     @Column({ comment: '完成状态', default: false })
     @Expose()
-    status: boolean;
+    completed: boolean;
 
     @Type(() => Date)
     @UpdateDateColumn({
